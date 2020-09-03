@@ -9,10 +9,10 @@ namespace Dino.Classes
 {
     public class Player
     {
-        Transform transform;
+        public Physics physics;
         public Player(PointF position, Size size)
         {
-            transform = new Transform(position, size);
+            physics = new Physics(position, size);
         }
 
         public void DrawSprite(Graphics g)

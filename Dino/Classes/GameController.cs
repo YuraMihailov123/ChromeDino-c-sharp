@@ -10,5 +10,10 @@ namespace Dino.Classes
     public static class GameController
     {
         public static Image spritesheet;
+
+        public static void Init()
+        {
+            spritesheet = Properties.Resources.sprite;
+        }
     }
 }
