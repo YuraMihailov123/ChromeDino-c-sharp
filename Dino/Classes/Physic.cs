@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Dino.Classes
 {
@@ -13,14 +14,16 @@ namespace Dino.Classes
         float gravity;
         float a;
 
-        public float dx;
+        public bool isJumping;
+        public bool isCrouching;
 
         public Physics(PointF position, Size size)
         {
             transform = new Transform(position, size);
             gravity = 0;
             a = 0.4f;
-            dx = 0;
+            isJumping = false;
+            isCrouching = false;
         }
 
         public void ApplyPhysics()
@@ -30,17 +33,15 @@ namespace Dino.Classes
 
         public void CalculatePhysics()
         {
-            if (dx != 0)
-            {
-                transform.position.X += dx;
-            }
-            if (transform.position.Y < 200)
+            if (transform.position.Y < 150 || isJumping)
             {
                 transform.position.Y += gravity;
                 gravity += a;
 
                 //Collide();
             }
+            if (transform.position.Y >= 150)
+                isJumping = false;
         }
 
         /*public void Collide()
@@ -69,7 +70,11 @@ namespace Dino.Classes
 
         public void AddForce()
         {
-            gravity = -10;
+            if (!isJumping)
+            {
+                isJumping = true;
+                gravity = -10;
+            }
         }
     }
 

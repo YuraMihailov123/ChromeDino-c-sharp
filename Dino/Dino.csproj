@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Bird.cs" />
+    <Compile Include="Classes\Cactus.cs" />
+    <Compile Include="Classes\GameController.cs" />
+    <Compile Include="Classes\Physic.cs" />
+    <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Road.cs" />
+    <Compile Include="Classes\Transform.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
