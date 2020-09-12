@@ -30,7 +30,7 @@ namespace Dino
             mainTimer = new Timer();
             mainTimer.Interval = 10;
             mainTimer.Tick += new EventHandler(Update);
-            GameController.Init();
+            
             Init();
         }
 
@@ -40,7 +40,12 @@ namespace Dino
             {
                 case Keys.Down:
                     if (!player.physics.isJumping)
+                    {
                         player.physics.isCrouching = true;
+                        player.physics.isJumping = false;
+                        player.physics.transform.size.Height = 25;
+                        player.physics.transform.position.Y = 174;
+                    }
                     break;
             }
         }
@@ -51,16 +56,22 @@ namespace Dino
             {
                 case Keys.Up:
                     if (!player.physics.isCrouching)
+                    {
+                        player.physics.isCrouching = false;
                         player.physics.AddForce();
+                    }
                     break;
                 case Keys.Down:
                     player.physics.isCrouching = false;
+                    player.physics.transform.size.Height = 50;
+                    player.physics.transform.position.Y = 150.2f;
                     break;
             }
         }
 
         public void Init()
         {
+            GameController.Init();
             player = new Player(new PointF(50, 149), new Size(50, 50));
             mainTimer.Start();
             Invalidate();
@@ -68,6 +79,10 @@ namespace Dino
 
         public void Update(object sender, EventArgs e)
         {
+            player.score++;
+            this.Text = "Dino - Score: " + player.score;
+            if (player.physics.Collide())
+                Init();
             player.physics.ApplyPhysics();
             GameController.MoveMap();
             Invalidate();

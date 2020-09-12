@@ -12,18 +12,20 @@ namespace Dino.Classes
         public Physics physics;
         public int framesCount = 0;
         public int animationCount = 0;
+        public int score = 0;
         
         public Player(PointF position, Size size)
         {
             physics = new Physics(position, size);
             framesCount = 0;
+            score = 0;
         }
 
         public void DrawSprite(Graphics g)
         {
             if (physics.isCrouching)
             {
-                DrawNeededSprite(g, 1870, 0, 109, 91, 118,1.35f);
+                DrawNeededSprite(g, 1870, 40, 109, 51, 118,1.35f);
             }else
             {
                 DrawNeededSprite(g,1518,0,79,91,88,1);

@@ -37,36 +37,43 @@ namespace Dino.Classes
             {
                 transform.position.Y += gravity;
                 gravity += a;
-
-                //Collide();
             }
-            if (transform.position.Y >= 150)
+            if (transform.position.Y > 150)
                 isJumping = false;
         }
 
-        /*public void Collide()
+        public bool Collide()
         {
-            for (int i = 0; i < PlatformController.platforms.Count; i++)
+            for (int i = 0; i < GameController.cactuses.Count; i++)
             {
-                var platform = PlatformController.platforms[i];
-                if (transform.position.X + transform.size.Width / 2 >= platform.transform.position.X && transform.position.X + transform.size.Width / 2 <= platform.transform.position.X + platform.transform.size.Width)
+                var cactus = GameController.cactuses[i];
+                PointF delta = new PointF();
+                delta.X = (transform.position.X + transform.size.Width / 2) - (cactus.transform.position.X + cactus.transform.size.Width / 2);
+                delta.Y = (transform.position.Y + transform.size.Height / 2) - (cactus.transform.position.Y + cactus.transform.size.Height / 2);
+                if (Math.Abs(delta.X) <= transform.size.Width / 2 + cactus.transform.size.Width / 2)
                 {
-                    if (transform.position.Y + transform.size.Height >= platform.transform.position.Y && transform.position.Y + transform.size.Height <= platform.transform.position.Y + platform.transform.size.Height)
+                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + cactus.transform.size.Height / 2)
                     {
-                        if (gravity > 0)
-                        {
-                            AddForce();
-                            if (!platform.isTouchedByPlayer)
-                            {
-                                PlatformController.score += 20;
-                                PlatformController.GenerateRandomPlatform();
-                                platform.isTouchedByPlayer = true;
-                            }
-                        }
+                        return true;
                     }
                 }
             }
-        }*/
+            for (int i = 0; i < GameController.birds.Count; i++)
+            {
+                var bird = GameController.birds[i];
+                PointF delta = new PointF();
+                delta.X = (transform.position.X + transform.size.Width / 2) - (bird.transform.position.X + bird.transform.size.Width / 2);
+                delta.Y = (transform.position.Y + transform.size.Height / 2) - (bird.transform.position.Y + bird.transform.size.Height / 2);
+                if (Math.Abs(delta.X) <= transform.size.Width / 2 + bird.transform.size.Width / 2)
+                {
+                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + bird.transform.size.Height / 2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         public void AddForce()
         {

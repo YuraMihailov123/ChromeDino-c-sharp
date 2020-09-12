@@ -30,7 +30,7 @@ namespace Dino.Classes
         {
             for(int i = 0; i < roads.Count; i++)
             {
-                roads[i].transform.position.X -= 3;
+                roads[i].transform.position.X -= 4;
                 if (roads[i].transform.position.X + roads[i].transform.size.Width < 0)
                 {
                     roads.RemoveAt(i);
@@ -39,7 +39,7 @@ namespace Dino.Classes
             }
             for (int i = 0; i < cactuses.Count; i++)
             {
-                cactuses[i].transform.position.X -= 3;
+                cactuses[i].transform.position.X -= 4;
                 if (cactuses[i].transform.position.X + cactuses[i].transform.size.Width < 0)
                 {
                     cactuses.RemoveAt(i);
@@ -47,7 +47,7 @@ namespace Dino.Classes
             }
             for (int i = 0; i < birds.Count; i++)
             {
-                birds[i].transform.position.X -= 3;
+                birds[i].transform.position.X -= 4;
                 if (birds[i].transform.position.X + birds[i].transform.size.Width < 0)
                 {
                     birds.RemoveAt(i);
@@ -70,7 +70,7 @@ namespace Dino.Classes
                 switch (obj)
                 {
                     case 0:
-                        Cactus cactus = new Cactus(new PointF(0 + 100 * 9, 130), new Size(50, 70));
+                        Cactus cactus = new Cactus(new PointF(0 + 100 * 9, 150), new Size(50, 50));
                         cactuses.Add(cactus);
                         break;
                     case 1:
