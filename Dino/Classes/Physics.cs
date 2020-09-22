@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Dino.Classes
 {
@@ -33,7 +32,7 @@ namespace Dino.Classes
 
         public void CalculatePhysics()
         {
-            if (transform.position.Y < 150 || isJumping)
+            if(transform.position.Y<150 || isJumping)
             {
                 transform.position.Y += gravity;
                 gravity += a;
@@ -44,7 +43,7 @@ namespace Dino.Classes
 
         public bool Collide()
         {
-            for (int i = 0; i < GameController.cactuses.Count; i++)
+            for(int i = 0; i < GameController.cactuses.Count; i++)
             {
                 var cactus = GameController.cactuses[i];
                 PointF delta = new PointF();
@@ -84,5 +83,4 @@ namespace Dino.Classes
             }
         }
     }
-
 }

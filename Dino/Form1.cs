@@ -15,14 +15,12 @@ namespace Dino
     {
         Player player;
         Timer mainTimer;
-
         public Form1()
         {
             InitializeComponent();
 
             this.Width = 700;
             this.Height = 300;
-            this.Text = "Chrome Dino";
             this.DoubleBuffered = true;
             this.Paint += new PaintEventHandler(DrawGame);
             this.KeyUp += new KeyEventHandler(OnKeyboardUp);
@@ -30,7 +28,7 @@ namespace Dino
             mainTimer = new Timer();
             mainTimer.Interval = 10;
             mainTimer.Tick += new EventHandler(Update);
-            
+
             Init();
         }
 
@@ -77,7 +75,7 @@ namespace Dino
             Invalidate();
         }
 
-        public void Update(object sender, EventArgs e)
+        public void Update(object sender , EventArgs e)
         {
             player.score++;
             this.Text = "Dino - Score: " + player.score;
@@ -92,7 +90,7 @@ namespace Dino
         {
             Graphics g = e.Graphics;
             player.DrawSprite(g);
-            GameController.DrawObjects(g);
+            GameController.DrawObjets(g);
         }
     }
 }

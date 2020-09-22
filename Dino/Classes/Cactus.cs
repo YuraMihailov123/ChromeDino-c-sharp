@@ -10,10 +10,9 @@ namespace Dino.Classes
     public class Cactus
     {
         public Transform transform;
-
         int srcX = 0;
 
-        public Cactus(PointF pos, Size size)
+        public Cactus(PointF pos,Size size)
         {
             transform = new Transform(pos, size);
             ChooseRandomPic();

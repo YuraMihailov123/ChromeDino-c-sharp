@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace Dino.Classes
 {
@@ -17,11 +17,12 @@ namespace Dino.Classes
         public static int dangerSpawn = 10;
         public static int countDangerSpawn = 0;
 
+
         public static void Init()
         {
             roads = new List<Road>();
-            cactuses = new List<Cactus>();
             birds = new List<Bird>();
+            cactuses = new List<Cactus>();
             spritesheet = Properties.Resources.sprite;
             GenerateRoad();
         }
@@ -61,7 +62,7 @@ namespace Dino.Classes
             roads.Add(road);
             countDangerSpawn++;
 
-            if(countDangerSpawn >= dangerSpawn)
+            if (countDangerSpawn >= dangerSpawn)
             {
                 Random r = new Random();
                 dangerSpawn = r.Next(5, 9);
@@ -78,35 +79,31 @@ namespace Dino.Classes
                         birds.Add(bird);
                         break;
                 }
-                
             }
-
-            
         }
-
         public static void GenerateRoad()
-        {            
+        {
             for(int i = 0; i < 10; i++)
             {
-                Road road = new Road(new PointF(0+100*i, 200), new Size(100, 17));
+                Road road = new Road(new PointF(0 + 100 * i, 200), new Size(100, 17));
                 roads.Add(road);
                 countDangerSpawn++;
             }
         }
 
-        public static void DrawObjects(Graphics g)
+        public static void DrawObjets(Graphics g)
         {
-            for (int i = 0; i < GameController.roads.Count; i++)
+            for(int i = 0; i < roads.Count; i++)
             {
-                GameController.roads[i].DrawSprite(g);
+                roads[i].DrawSprite(g);
             }
-            for (int i = 0; i < GameController.cactuses.Count; i++)
+            for (int i = 0; i < cactuses.Count; i++)
             {
-                GameController.cactuses[i].DrawSprite(g);
+                cactuses[i].DrawSprite(g);
             }
-            for (int i = 0; i < GameController.birds.Count; i++)
+            for (int i = 0; i < birds.Count; i++)
             {
-                GameController.birds[i].DrawSprite(g);
+                birds[i].DrawSprite(g);
             }
         }
     }
